@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>stegoX</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <style>
+    @font-face {
+      font-family: 'SpaceX';
+      src: url('https://fonts.googleapis.com/css2?family=Antonio:wght@700&display=swap');
+    }
+    .spacex-header {
+      font-family: 'SpaceX', sans-serif;
+      text-transform: lowercase;
+      letter-spacing: 2px;
+    }
+    .spacex-header .x {
+      text-transform: uppercase;
+    }
+    body, p, h2, h3, form, input, textarea, button {
+      font-family: 'Agency FB', sans-serif;
+    }
+    .download-btn {
+      margin-top: 10px;
+    }
+    /* Make the canvas responsive */
+    canvas {
+      max-width: 100%;  /* Ensure the canvas width does not exceed its container */
+      height: auto;     /* Maintain the aspect ratio */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="page-header">
+      <h1 class="spacex-header">stego<span class="x">X</span></h1>
+    </div>
+
+    <ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
+      <li role="presentation" class="active"> <a href="#encode" data-toggle="tab">Encode</a></li>
+      <li role="presentation"> <a href="#decode" data-toggle="tab">Decode</a></li>
+    </ul>
+
+    <div id="my-tab-content" class="tab-content">
+      <div class="tab-pane active" id="encode">
+        <div>
+          <h2>Encode message</h2>
+          <p class="alert alert-info">
+            To encode a message into an image, choose the image you want to use, enter your text and hit the <strong>Encode</strong> button. <br/>
+            Save the last image, it will contain your hidden message. <br/>
+            Remember, the more text you want to hide, the larger the image has to be. In case you chose an image that is too small to hold your message you will be informed.<br/><br/>
+            Neither the image nor the message you hide will be at any moment transmitted over the web, all the magic happens within your browser.
+          </p>
+          <form class="form">
+            <div class="form-group">
+              <input class="form-control" type="file" name="baseFile" onchange="previewEncodeImage()">
+            </div>
+
+            <div class="form-group">
+              <textarea class="form-control message" rows="3" placeholder="Enter your message here"></textarea>
+            </div>
+
+            <div class="form-group">
+              <button class="encode btn btn-default pull-right" onclick="encodeMessage()">Encode</button>
+            </div>
+          </form>
+          <div class="clearfix"></div>
+        </div>
+
+        <div class="error" style="display: none;"></div>
+        <div class="binary" style="display: none;">
+          <h3>Binary representation of your message</h3>
+          <textarea class="form-control message" style="word-wrap:break-word;">
+          </textarea>
+        </div>
+        <div class="images" style="display: none;">
+          <div class="original" style="display: none;">
+            <h3>Original</h3>
+            <canvas></canvas>
+          </div>
+          <div class="nulled" style="display: none;">
+            <h3>Normalized</h3>
+            <canvas></canvas>
+          </div>
+          <div class="message" style="display: none;">
+            <h3>Message hidden in image</h3>
+            <canvas id="outputImage"></canvas>
+            <button class="btn btn-primary download-btn" onclick="downloadImage()">Download</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" id="decode">
+        <div>
+          <h2>Decode image</h2>
+          <p class="alert alert-info">
+            To decode a hidden message from an image, just choose an image and hit the <strong>Decode</strong> button.<br/><br/>
+            Neither the image nor the message that has been hidden will be at any moment transmitted over the web, all the magic happens within your browser.
+          </p>
+          <form class="form">
+            <div class="form-group">
+              <input class="form-control" type="file" name="decodeFile" onchange="previewDecodeImage()">
+            </div>
+            <div class="form-group">
+              <button class="decode btn btn-default pull-right" onclick="decodeMessage()">Decode</button>
+            </div>
+          </form>
+          <div class="clearfix"></div>
+        </div>
+        <div class="binary-decode" style="display: none;">
+          <h3>Hidden message</h3>
+          <textarea class="form-control message" style="word-wrap:break-word;">
+          </textarea>
+        </div>
+        <div class="decode" style="display: none;">
+          <h3>Input</h3>
+          <canvas></canvas>
+        </div>
+      </div>
+
+    </div>
+
+    <footer style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+      &copy; 2024 by <a href="mailto:badcow@badcow.com">badcow.inc</a>
+    </footer>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type="text/JavaScript" src="script.js"></script>
+  <script>
+    function downloadImage() {
+      const canvas = document.getElementById('outputImage');
+      const link = document.createElement('a');
+      link.download = 'hidden_message_image.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+
+    function previewEncodeImage() {
+      var file = document.querySelector("input[name=baseFile]").files[0];
+  
+      $(".images .nulled").hide();
+      $(".images .message").hide();
+  
+      previewImage(file, ".original canvas", function() {
+        $(".images .original").fadeIn();
+        $(".images").fadeIn();
+      });
+    }
+  
+    function previewImage(file, canvasSelector, callback) {
+      var reader = new FileReader();
+      var image = new Image;
+      var $canvas = $(canvasSelector);
+      var context = $canvas[0].getContext('2d');
+  
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+  
+      reader.onloadend = function () {
+        image.src = URL.createObjectURL(file);
+  
+        image.onload = function() {
+          // Scale the canvas to fit the image width
+          var scaleFactor = Math.min(window.innerWidth / image.width, 1); // Ensure the image fits within the window
+          var width = image.width * scaleFactor;
+          var height = image.height * scaleFactor;
+  
+          $canvas.prop({
+            'width': width,
+            'height': height
+          });
+  
+          context.drawImage(image, 0, 0, width, height);
+  
+          callback();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
