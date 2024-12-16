@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>stegoX</title>
+  <link rel="icon" type="image/png" href="s.png">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <style>
     @font-face {
@@ -38,6 +39,7 @@
     <ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
       <li role="presentation" class="active"> <a href="#encode" data-toggle="tab">Encode</a></li>
       <li role="presentation"> <a href="#decode" data-toggle="tab">Decode</a></li>
+      <li role="presentation"> <a href="#search" data-toggle="tab">Search</a></li>
     </ul>
 
     <div id="my-tab-content" class="tab-content">
@@ -45,10 +47,10 @@
         <div>
           <h2>Encode message</h2>
           <p class="alert alert-info">
-            To encode a message into an image, choose the image you want to use, enter your text and hit the <strong>Encode</strong> button. <br/>
-            Save the last image, it will contain your hidden message. <br/>
-            Remember, the more text you want to hide, the larger the image has to be. In case you chose an image that is too small to hold your message you will be informed.<br/><br/>
-            Neither the image nor the message you hide will be at any moment transmitted over the web, all the magic happens within your browser.
+            To encode a message into an image, choose the image you want to use, enter your text and password, then hit the <strong>Encode</strong> button. <br/>
+            Save the last image and keep your password and key safe - you'll need them to decode the message later.<br/>
+            Remember, the more text you want to hide, the larger the image has to be.<br/><br/>
+            Neither the image nor the message you hide will be transmitted over the web, all processing happens in your browser.
           </p>
           <form class="form">
             <div class="form-group">
@@ -57,6 +59,10 @@
 
             <div class="form-group">
               <textarea class="form-control message" rows="3" placeholder="Enter your message here"></textarea>
+            </div>
+
+            <div class="form-group">
+              <input type="password" class="form-control encode-password" placeholder="Enter password for encryption">
             </div>
 
             <div class="form-group">
@@ -87,18 +93,26 @@
             <button class="btn btn-primary download-btn" onclick="downloadImage()">Download</button>
           </div>
         </div>
+        <div class="key-info alert alert-success" style="display: none;">
+          <strong>Your Key: </strong><span class="generated-key"></span>
+          <br/>
+          <strong>Keep this key and your password safe - you'll need both to decode the message later!</strong>
+        </div>
       </div>
 
       <div class="tab-pane" id="decode">
         <div>
           <h2>Decode image</h2>
           <p class="alert alert-info">
-            To decode a hidden message from an image, just choose an image and hit the <strong>Decode</strong> button.<br/><br/>
-            Neither the image nor the message that has been hidden will be at any moment transmitted over the web, all the magic happens within your browser.
+            To decode a hidden message from an image, choose an image, enter the password used for encoding, and hit the <strong>Decode</strong> button.<br/><br/>
+            Neither the image nor the message will be transmitted over the web, all processing happens in your browser.
           </p>
           <form class="form">
             <div class="form-group">
               <input class="form-control" type="file" name="decodeFile" onchange="previewDecodeImage()">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control decode-password" placeholder="Enter password for decryption">
             </div>
             <div class="form-group">
               <button class="decode btn btn-default pull-right" onclick="decodeMessage()">Decode</button>
@@ -106,6 +120,7 @@
           </form>
           <div class="clearfix"></div>
         </div>
+        <div class="decode-error alert alert-danger" style="display: none;"></div>
         <div class="binary-decode" style="display: none;">
           <h3>Hidden message</h3>
           <textarea class="form-control message" style="word-wrap:break-word;">
@@ -117,6 +132,35 @@
         </div>
       </div>
 
+      <div class="tab-pane" id="search">
+        <div>
+          <h2>Search Encoded Messages</h2>
+          <p class="alert alert-info">
+            Enter the key and password used during encoding to retrieve and decode your message.<br/><br/>
+            All processing happens in your browser - no data is transmitted over the internet.
+          </p>
+          <form class="form">
+            <div class="form-group">
+              <input type="text" class="form-control search-key" placeholder="Enter your key">
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control search-password" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+              <button class="search btn btn-default pull-right" onclick="searchMessage()">Search</button>
+            </div>
+          </form>
+          <div class="clearfix"></div>
+        </div>
+        <div class="search-result" style="display: none;">
+          <h3>Search Result</h3>
+          <div class="alert search-message"></div>
+        </div>
+        <div class="decoded-message" style="display: none;">
+          <h3>Decoded Message</h3>
+          <textarea class="form-control" rows="3" readonly></textarea>
+        </div>
+      </div>
     </div>
 
     <footer style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
