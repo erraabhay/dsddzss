@@ -28,6 +28,1054 @@
       max-width: 100%;  /* Ensure the canvas width does not exceed its container */
       height: auto;     /* Maintain the aspect ratio */
     }
+    /* Dark theme and hacker aesthetic */
+    body {
+      background-color: #0a0a0a;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+    }
+
+    .container {
+      background-color: rgba(0, 20, 0, 0.9);
+      border: 1px solid #00ff00;
+      border-radius: 5px;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    .spacex-header {
+      font-family: 'Courier New', monospace;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 0 0 10px #00ff00; }
+      50% { text-shadow: -2px 0 #ff0000, 2px 0 #0000ff; }
+      100% { text-shadow: 0 0 10px #00ff00; }
+    }
+
+    .nav-tabs {
+      border-bottom: 1px solid #00ff00;
+    }
+
+    .nav-tabs > li > a {
+      color: #00ff00;
+      background-color: #0a0a0a;
+      border: 1px solid #00ff00;
+    }
+
+    .nav-tabs > li.active > a,
+    .nav-tabs > li.active > a:hover,
+    .nav-tabs > li.active > a:focus {
+      color: #000000;
+      background-color: #00ff00;
+      border: 1px solid #00ff00;
+    }
+
+    .form-control {
+      background-color: #000000;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+    }
+
+    .form-control:focus {
+      border-color: #00ff00;
+      box-shadow: 0 0 5px #00ff00;
+    }
+
+    .btn {
+      background-color: #000000;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #00ff00;
+      color: #000000;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    .alert {
+      background-color: rgba(0, 20, 0, 0.9);
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+    }
+
+    .alert-info {
+      background-color: rgba(0, 0, 20, 0.9);
+      border-color: #0088ff;
+      color: #0088ff;
+    }
+
+    .alert-danger {
+      background-color: rgba(20, 0, 0, 0.9);
+      border-color: #ff0000;
+      color: #ff0000;
+    }
+
+    .alert-success {
+      background-color: rgba(0, 20, 0, 0.9);
+      border-color: #00ff00;
+      color: #00ff00;
+    }
+
+    canvas {
+      border: 1px solid #00ff00;
+      box-shadow: 0 0 10px #00ff00;
+      background-color: #000000;
+    }
+
+    /* Terminal-like effect for textareas */
+    textarea.form-control {
+      background-color: #000000;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      resize: none;
+      padding: 10px;
+      line-height: 1.5;
+    }
+
+    textarea.form-control::before {
+      content: ">";
+      color: #00ff00;
+    }
+
+    /* Add a blinking cursor effect */
+    .form-control::after {
+      content: "_";
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    footer {
+      color: #00ff00;
+      opacity: 0.7;
+    }
+
+    footer a {
+      color: #00ff00;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    /* Enhanced glitch effect for headers */
+    h1, h2, h3 {
+      position: relative;
+      text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                   0.025em 0.04em 0 #fffc00;
+      animation: glitch 725ms infinite;
+    }
+
+    h1::before, h2::before, h3::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      text-shadow: -0.05em 0 #00fffc;
+      background: #0a0a0a;
+      overflow: hidden;
+      animation: noise-anim 3.5s infinite linear alternate-reverse;
+    }
+
+    /* Scanline effect */
+    .container::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%,
+        rgba(0, 255, 0, 0.25) 50%
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      animation: scanlines 1s steps(60) infinite;
+    }
+
+    /* CRT screen effect */
+    .container {
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #00ff00;
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5),
+                  inset 0 0 20px rgba(0, 255, 0, 0.5);
+      animation: flicker 0.3s infinite;
+    }
+
+    /* Enhance form controls with tech feel */
+    .form-control {
+      position: relative;
+      background: linear-gradient(45deg, #000000 25%, #001100 25%, #001100 50%, #000000 50%, #000000 75%, #001100 75%);
+      background-size: 4px 4px;
+      border: 1px solid #00ff00;
+      padding: 8px 12px;
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+    }
+
+    /* Add tech corners to buttons */
+    .btn {
+      position: relative;
+      clip-path: polygon(
+        0 10px, 
+        10px 0, 
+        calc(100% - 10px) 0, 
+        100% 10px, 
+        100% calc(100% - 10px), 
+        calc(100% - 10px) 100%, 
+        10px 100%, 
+        0 calc(100% - 10px)
+      );
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 25%, rgba(0, 255, 0, 0.1) 25%, rgba(0, 255, 0, 0.1) 50%, transparent 50%);
+      background-size: 4px 4px;
+      animation: buttonGlow 2s linear infinite;
+    }
+
+    /* Loading animation for processing */
+    .processing::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #00ff00;
+      animation: loading 2s linear infinite;
+    }
+
+    /* Binary rain in the background of containers */
+    .binary-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Animations */
+    @keyframes scanlines {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(4px); }
+    }
+
+    @keyframes flicker {
+      0% { opacity: 0.97; }
+      5% { opacity: 0.95; }
+      10% { opacity: 0.97; }
+    }
+
+    @keyframes loading {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes buttonGlow {
+      0% { background-position: 0 0; }
+      100% { background-position: 4px 4px; }
+    }
+
+    @keyframes noise-anim {
+      0% { clip-path: inset(40% 0 61% 0); }
+      20% { clip-path: inset(92% 0 1% 0); }
+      40% { clip-path: inset(43% 0 1% 0); }
+      60% { clip-path: inset(25% 0 58% 0); }
+      80% { clip-path: inset(54% 0 7% 0); }
+      100% { clip-path: inset(58% 0 43% 0); }
+    }
+
+    /* Enhance matrix rain effect */
+    #matrix {
+      filter: blur(0.5px);
+      opacity: 0.8;
+    }
+
+    /* Add tech border to images */
+    .images canvas {
+      border: 2px solid #00ff00;
+      position: relative;
+      margin: 10px 0;
+    }
+
+    .images canvas::before,
+    .images canvas::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00ff00;
+    }
+
+    .images canvas::before {
+      top: -5px;
+      left: -5px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .images canvas::after {
+      bottom: -5px;
+      right: -5px;
+      border-left: none;
+      border-top: none;
+    }
+
+    /* Add cool scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000000;
+      border: 1px solid #00ff00;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #00ff00;
+      border: 1px solid #000000;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00cc00;
+    }
+
+    /* Military/Cyber Warfare Theme */
+    :root {
+      --military-green: #1a3c1a;
+      --alert-red: #ff0000;
+      --radar-green: #00ff00;
+      --tactical-blue: #00ffff;
+    }
+
+    body {
+      background-color: #000;
+      color: var(--radar-green);
+      font-family: 'Share Tech Mono', monospace;
+      background-image: 
+        linear-gradient(rgba(0, 15, 0, 0.97), rgba(0, 15, 0, 0.97)),
+        url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwZmYwMDIwIiBzdHJva2Utd2lkdGg9IjAuNSIvPjwvc3ZnPg==');
+    }
+
+    .container {
+      background: linear-gradient(145deg, rgba(26, 60, 26, 0.9), rgba(0, 15, 0, 0.95));
+      border: 2px solid var(--radar-green);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radar scan effect */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(217deg, rgba(0, 255, 0, 0) 0%, rgba(0, 255, 0, 0.1) 50%, rgba(0, 255, 0, 0) 100%);
+      animation: radar-beam 4s linear infinite;
+      transform-origin: 0 0;
+      pointer-events: none;
+    }
+
+    @keyframes radar-beam {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* Military-style header */
+    .spacex-header {
+      font-family: 'Share Tech Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      color: var(--radar-green);
+      text-shadow: 0 0 10px var(--radar-green);
+      border: 2px solid var(--radar-green);
+      padding: 15px;
+      background: rgba(0, 20, 0, 0.9);
+      position: relative;
+      margin-bottom: 30px;
+    }
+
+    .spacex-header::before,
+    .spacex-header::after {
+      content: '[ CLASSIFIED ]';
+      position: absolute;
+      font-size: 12px;
+      color: var(--alert-red);
+      animation: blink 1s infinite;
+    }
+
+    .spacex-header::before {
+      left: 10px;
+      top: -20px;
+    }
+
+    .spacex-header::after {
+      right: 10px;
+      bottom: -20px;
+    }
+
+    /* Military-style form controls */
+    .form-control {
+      background: rgba(0, 20, 0, 0.9);
+      border: 1px solid var(--radar-green);
+      color: var(--radar-green);
+      font-family: 'Share Tech Mono', monospace;
+      padding: 10px 15px;
+      position: relative;
+    }
+
+    .form-control::before {
+      content: '>';
+      position: absolute;
+      left: 5px;
+      color: var(--radar-green);
+    }
+
+    /* Tactical buttons */
+    .btn {
+      background: var(--military-green);
+      border: 2px solid var(--radar-green);
+      color: var(--radar-green);
+      font-family: 'Share Tech Mono', monospace;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      padding: 10px 20px;
+      clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, var(--radar-green), transparent 60%);
+      z-index: -1;
+      animation: tactical-glow 2s linear infinite;
+    }
+
+    .btn:hover {
+      background: var(--radar-green);
+      color: #000;
+      text-shadow: none;
+    }
+
+    /* Status indicators */
+    .status-indicator {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 12px;
+      z-index: 1000;
+    }
+
+    .status-item {
+      padding: 5px 10px;
+      background: rgba(0, 20, 0, 0.9);
+      border: 1px solid var(--radar-green);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--radar-green);
+      animation: blink 1s infinite;
+    }
+
+    /* Enhanced Matrix rain */
+    #matrix {
+      filter: url('#glow');
+      opacity: 0.8;
+    }
+
+    /* Tactical Animations */
+    @keyframes tactical-glow {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes scanning {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Add SVG filter for matrix glow */
+    <svg style="position: absolute; width: 0; height: 0;">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+    </svg>
+
+    /* High-tech color variables */
+    :root {
+      --neon-blue: #00ffff;
+      --neon-pink: #ff00ff;
+      --cyber-yellow: #ffff00;
+      --tech-green: #00ff00;
+      --dark-bg: #000813;
+    }
+
+    /* Futuristic background with grid */
+    body {
+      background: 
+        linear-gradient(to bottom, rgba(0, 8, 19, 0.95), rgba(0, 8, 19, 0.95)),
+        linear-gradient(90deg, var(--tech-green) 1px, transparent 1px) 0 0,
+        linear-gradient(var(--tech-green) 1px, transparent 1px) 0 0;
+      background-size: 100% 100%, 30px 30px, 30px 30px;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    /* Enhanced container with holographic effect */
+    .container {
+      background: linear-gradient(135deg, 
+        rgba(0, 8, 19, 0.9), 
+        rgba(0, 20, 40, 0.8));
+      border: 1px solid var(--tech-green);
+      box-shadow: 
+        0 0 10px var(--tech-green),
+        inset 0 0 20px rgba(0, 255, 0, 0.2);
+      backdrop-filter: blur(5px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Scanning line effect */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        45deg,
+        transparent 45%,
+        rgba(0, 255, 0, 0.1) 48%,
+        rgba(0, 255, 0, 0.2) 50%,
+        rgba(0, 255, 0, 0.1) 52%,
+        transparent 55%
+      );
+      animation: scan 4s linear infinite;
+      pointer-events: none;
+    }
+
+    /* Cyber borders */
+    .container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid var(--tech-green);
+      clip-path: polygon(
+        0 5px, 5px 0, 20% 0, calc(20% + 5px) 5px,
+        calc(80% - 5px) 5px, 80% 0, calc(100% - 5px) 0, 100% 5px,
+        100% 20%, calc(100% - 5px) calc(20% + 5px),
+        calc(100% - 5px) calc(80% - 5px), 100% 80%,
+        100% calc(100% - 5px), calc(100% - 5px) 100%,
+        80% 100%, calc(80% - 5px) calc(100% - 5px),
+        calc(20% + 5px) calc(100% - 5px), 20% 100%,
+        5px 100%, 0 calc(100% - 5px),
+        0 80%, 5px calc(80% - 5px),
+        5px calc(20% + 5px), 0 20%
+      );
+    }
+
+    /* Enhanced header with cyber effect */
+    .spacex-header {
+      background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 255, 0, 0.1), 
+        transparent);
+      padding: 20px;
+      position: relative;
+      text-transform: uppercase;
+      letter-spacing: 10px;
+      animation: textGlow 2s infinite;
+    }
+
+    /* Digital noise overlay */
+    .spacex-header::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        45deg,
+        transparent 45%,
+        rgba(0, 255, 0, 0.1) 50%,
+        transparent 55%
+      );
+      animation: glitchText 0.2s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+    }
+
+    /* High-tech form controls */
+    .form-control {
+      background: rgba(0, 15, 30, 0.9);
+      border: 1px solid var(--tech-green);
+      color: var(--tech-green);
+      padding: 15px;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+      background: rgba(0, 20, 40, 0.9);
+      box-shadow: 
+        0 0 15px var(--tech-green),
+        inset 0 0 10px var(--tech-green);
+      border-color: var(--neon-blue);
+    }
+
+    /* Tactical buttons */
+    .btn {
+      background: linear-gradient(
+        45deg,
+        rgba(0, 20, 0, 0.9),
+        rgba(0, 40, 0, 0.9)
+      );
+      border: none;
+      position: relative;
+      clip-path: polygon(
+        10px 0,
+        calc(100% - 10px) 0,
+        100% 10px,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        10px 100%,
+        0 calc(100% - 10px),
+        0 10px
+      );
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      background: linear-gradient(45deg, 
+        transparent,
+        rgba(0, 255, 0, 0.1),
+        transparent);
+      animation: buttonGlow 2s infinite;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 
+        0 5px 15px rgba(0, 255, 0, 0.3),
+        0 0 30px rgba(0, 255, 0, 0.1);
+    }
+
+    /* Progress indicators */
+    .progress-bar {
+      height: 2px;
+      background: var(--tech-green);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        var(--neon-blue),
+        transparent
+      );
+      animation: progressGlow 2s linear infinite;
+    }
+
+    /* Enhanced animations */
+    @keyframes scan {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 10px var(--tech-green); }
+      50% { text-shadow: 0 0 20px var(--neon-blue); }
+    }
+
+    @keyframes glitchText {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+
+    @keyframes buttonGlow {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    @keyframes progressGlow {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* Enhanced status indicators */
+    .status-indicator {
+      background: rgba(0, 15, 30, 0.9);
+      border: 1px solid var(--tech-green);
+      padding: 10px;
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      transform: translateZ(0);
+      animation: statusPulse 2s infinite;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 5px 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--tech-green);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .status-dot::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--tech-green);
+      animation: pulseRing 2s infinite;
+    }
+
+    /* Add holographic overlay */
+    .holographic-overlay {
+      position: fixed;
+      inset: 0;
+      background: 
+        repeating-linear-gradient(
+          0deg,
+          rgba(0, 255, 0, 0.03) 0px,
+          rgba(0, 255, 0, 0) 1px,
+          rgba(0, 255, 0, 0.03) 2px
+        );
+      pointer-events: none;
+      z-index: 9999;
+      animation: scanline 10s linear infinite;
+    }
+
+    /* Add classified document header */
+    .top-secret-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
+      border-bottom: 2px solid var(--alert-red);
+      padding: 5px;
+      z-index: 2000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Share Tech Mono', monospace;
+    }
+
+    .classification-marker {
+      color: var(--alert-red);
+      font-weight: bold;
+      font-size: 14px;
+      letter-spacing: 3px;
+      animation: warning-blink 1s infinite;
+    }
+
+    .security-level {
+      font-size: 12px;
+      color: var(--alert-red);
+    }
+
+    /* Enhanced military styling */
+    .container {
+      margin-top: 40px;
+      border: 3px double var(--tech-green);
+      background: 
+        linear-gradient(135deg, rgba(0, 20, 0, 0.95), rgba(0, 10, 0, 0.9)),
+        repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0, 255, 0, 0.1) 10px, rgba(0, 255, 0, 0.1) 11px);
+    }
+
+    /* Military coordinates overlay */
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        linear-gradient(90deg, transparent 49%, rgba(0, 255, 0, 0.1) 50%, transparent 51%) 0 0,
+        linear-gradient(0deg, transparent 49%, rgba(0, 255, 0, 0.1) 50%, transparent 51%) 0 0;
+      background-size: 50px 50px;
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    /* Add corner classifications */
+    .corner-classification {
+      position: fixed;
+      font-size: 10px;
+      color: var(--alert-red);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transform: rotate(-45deg);
+      opacity: 0.7;
+    }
+
+    .corner-classification.top-left { top: 20px; left: -15px; }
+    .corner-classification.top-right { top: 20px; right: -15px; transform: rotate(45deg); }
+    .corner-classification.bottom-left { bottom: 20px; left: -15px; }
+    .corner-classification.bottom-right { bottom: 20px; right: -15px; transform: rotate(45deg); }
+
+    /* Enhanced status indicators */
+    .status-indicator {
+      background: rgba(0, 20, 0, 0.95);
+      border: 2px solid var(--tech-green);
+      padding: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+    }
+
+    .status-item::before {
+      content: '[CLASSIFIED]';
+      color: var(--alert-red);
+      font-size: 8px;
+      margin-right: 5px;
+    }
+
+    /* Add authentication warning */
+    .auth-warning {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--alert-red);
+      font-size: 12px;
+      text-align: center;
+      opacity: 0.8;
+      animation: warning-blink 2s infinite;
+    }
+
+    @keyframes warning-blink {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Key Generation Animation */
+    .key-generation {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0, 20, 0, 0.9);
+      border: 2px solid var(--radar-green);
+      padding: 10px 20px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      z-index: 1000;
+      display: none; /* Hidden by default */
+    }
+
+    .key-generation.active {
+      display: block;
+      animation: keyGenPulse 1s infinite;
+    }
+
+    .key-generation::before {
+      content: '[ GENERATING ENCRYPTION KEY ]';
+      color: var(--alert-red);
+      margin-right: 10px;
+    }
+
+    .key-bits {
+      color: var(--tech-green);
+      font-family: monospace;
+      letter-spacing: 2px;
+    }
+
+    @keyframes keyGenPulse {
+      0% { border-color: var(--radar-green); }
+      50% { border-color: var(--alert-red); }
+      100% { border-color: var(--radar-green); }
+    }
+
+    /* Key Progress Bar */
+    .key-progress {
+      width: 200px;
+      height: 2px;
+      background: rgba(0, 255, 0, 0.2);
+      margin-top: 5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .key-progress::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 50%;
+      background: var(--radar-green);
+      animation: keyProgress 2s linear infinite;
+    }
+
+    @keyframes keyProgress {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(200%); }
+    }
+
+    /* Key generation display styling */
+    .key-display {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--tech-green);
+      background: rgba(0, 20, 0, 0.9);
+      border: 1px solid var(--tech-green);
+      padding: 10px;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .key-display::before {
+      content: '[ KEY ]';
+      color: var(--alert-red);
+      font-size: 0.9em;
+    }
+
+    .generate-key-btn {
+      margin-right: 10px;
+      background: var(--military-green);
+      border: 1px solid var(--tech-green);
+      color: var(--tech-green);
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+      text-transform: uppercase;
+      font-size: 0.9em;
+    }
+
+    .key-value {
+      font-family: monospace;
+      letter-spacing: 2px;
+      animation: keyBlink 0.5s infinite;
+    }
+
+    @keyframes keyBlink {
+      50% { opacity: 0.7; }
+    }
+
+    /* Tactical overlay effect */
+    .tactical-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .tactical-overlay::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100px;
+      height: 100px;
+      border: 2px solid var(--radar-green);
+      clip-path: polygon(0 0, 20% 0, 0 20%);
+    }
+
+    .tactical-overlay::after {
+      content: '';
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 100px;
+      height: 100px;
+      border: 2px solid var(--radar-green);
+      clip-path: polygon(100% 100%, 80% 100%, 100% 80%);
+    }
+
+    /* Enhanced form controls */
+    .form-control {
+      background: 
+        linear-gradient(90deg, 
+          rgba(0,255,0,0.1) 1px, 
+          transparent 1px) 0 0,
+        linear-gradient(
+          rgba(0,255,0,0.1) 1px, 
+          transparent 1px) 0 0;
+      background-size: 20px 20px;
+    }
   </style>
 </head>
 <body>
@@ -164,7 +1212,7 @@
     </div>
 
     <footer style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
-      &copy; 2024 by <a href="mailto:badcow@badcow.com">badcow.inc</a>
+      &copy; 2024 by <a href="mailto:mendiprashanth207@gmail.com">stego.inc</a>
     </footer>
   </div>
 
@@ -222,6 +1270,378 @@
         }
       }
     }
+  </script>
+  <canvas id="matrix" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+  <script>
+    // Matrix rain effect
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ0123456789@#$%^&*()';
+    const fontSize = 10;
+    const columns = canvas.width / fontSize;
+    const drops = [];
+
+    for (let i = 0; i < columns; i++) {
+      drops[i] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < drops.length; i++) {
+        // Military-style characters
+        const chars = '01ABCDEF[]{}#*<>!@$%^&*()_+-=';
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        
+        // Random green shades for military effect
+        const green = Math.floor(Math.random() * 155 + 100);
+        ctx.fillStyle = `rgba(0, ${green}, 0, 0.7)`;
+        ctx.font = `${fontSize}px 'Share Tech Mono'`;
+        
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+
+    // Resize canvas when window is resized
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    document.querySelectorAll('h1, h2, h3').forEach(header => {
+      header.setAttribute('data-text', header.textContent);
+    });
+
+    // Add processing animation to buttons when clicked
+    document.querySelectorAll('.btn').forEach(button => {
+      button.addEventListener('click', function() {
+        this.classList.add('processing');
+        setTimeout(() => this.classList.remove('processing'), 2000);
+      });
+    });
+
+    // Add military-style typing effect to textareas
+    document.querySelectorAll('textarea').forEach(textarea => {
+      textarea.addEventListener('input', function() {
+        this.value = this.value.toUpperCase(); // Military style is all caps
+        playTypingSound(); // Add mechanical keyboard sound
+      });
+    });
+
+    // Simulate mechanical keyboard sound
+    function playTypingSound() {
+      const audio = new Audio('data:audio/wav;base64,UklGRl9vT19...'); // Add your preferred typing sound
+      audio.volume = 0.2;
+      audio.play().catch(() => {}); // Ignore autoplay restrictions
+    }
+
+    // Add scanning effect on form submission
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        this.classList.add('scanning');
+        setTimeout(() => this.classList.remove('scanning'), 2000);
+      });
+    });
+  </script>
+  <!-- Add status indicators -->
+  <div class="status-indicator">
+    <div class="status-item">
+      <span class="status-dot"></span>
+      SYSTEM ACTIVE
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      ENCRYPTION READY
+    </div>
+  </div>
+
+  <!-- Add holographic overlay -->
+  <div class="holographic-overlay"></div>
+
+  <!-- Update status indicators -->
+  <div class="status-indicator">
+    <div class="status-item">
+      <span class="status-dot"></span>
+      SYSTEM ACTIVE
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      ENCRYPTION READY
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      NETWORK SECURE
+    </div>
+    <div class="progress-bar"></div>
+  </div>
+
+  <!-- Add loading progress bar -->
+  <div class="progress-bar"></div>
+
+  <script>
+    // Enhanced matrix rain with more tech characters
+    const techChars = '01ABCDEF[]{}#*<>!@$%^&*()_+-=\\|/░▓█▀▄□●○';
+    
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      for (let i = 0; i < drops.length; i++) {
+        const text = techChars[Math.floor(Math.random() * techChars.length)];
+        
+        // Enhanced color effects
+        const green = Math.floor(Math.random() * 155 + 100);
+        const blue = Math.floor(Math.random() * 50);
+        ctx.fillStyle = `rgba(0, ${green}, ${blue}, 0.7)`;
+        ctx.font = `${fontSize}px 'Share Tech Mono'`;
+        
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    // Add typing sound effects
+    const typingSounds = [
+      'data:audio/wav;base64,...', // Add multiple mechanical keyboard sounds
+      'data:audio/wav;base64,...',
+      'data:audio/wav;base64,...'
+    ];
+
+    function playTypingSound() {
+      const sound = typingSounds[Math.floor(Math.random() * typingSounds.length)];
+      const audio = new Audio(sound);
+      audio.volume = 0.2;
+      audio.play().catch(() => {});
+    }
+
+    // Add scanning animation for form submissions
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        this.classList.add('scanning');
+        // Add progress bar animation
+        const progress = document.createElement('div');
+        progress.className = 'progress-bar';
+        this.appendChild(progress);
+        
+        setTimeout(() => {
+          this.classList.remove('scanning');
+          progress.remove();
+        }, 2000);
+      });
+    });
+  </script>
+
+  <!-- Add top secret header -->
+  <div class="top-secret-header">
+    <span class="classification-marker">TOP SECRET//NOFORN</span>
+    <span class="security-level">SECURITY LEVEL: ALPHA</span>
+    <span class="classification-marker">TS/SCI</span>
+  </div>
+
+  <!-- Add corner classifications -->
+  <div class="corner-classification top-left">Top Secret</div>
+  <div class="corner-classification top-right">Classified</div>
+  <div class="corner-classification bottom-left">SCI Level</div>
+  <div class="corner-classification bottom-right">NOFORN</div>
+
+  <!-- Update status indicators -->
+  <div class="status-indicator">
+    <div class="status-item">
+      <span class="status-dot"></span>
+      SECURE COMMS ACTIVE
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      QUANTUM ENCRYPTION ENABLED
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      SATELLITE UPLINK STABLE
+    </div>
+    <div class="status-item">
+      <span class="status-dot"></span>
+      FIREWALL STATUS: ACTIVE
+    </div>
+  </div>
+
+  <!-- Add authentication warning -->
+  <div class="auth-warning">
+    WARNING: UNAUTHORIZED ACCESS IS PROHIBITED AND PUNISHABLE UNDER U.S. CODE TITLE 18, SECTION 1030
+    <br>
+    THIS SYSTEM IS MONITORED BY US CYBER COMMAND
+  </div>
+
+  <script>
+    // Add random coordinates display
+    setInterval(() => {
+      const coords = document.querySelectorAll('.status-item');
+      coords.forEach(coord => {
+        if (Math.random() > 0.7) {
+          const lat = (Math.random() * 180 - 90).toFixed(6);
+          const long = (Math.random() * 360 - 180).toFixed(6);
+          coord.setAttribute('data-coords', `LAT: ${lat} LONG: ${long}`);
+        }
+      });
+    }, 3000);
+
+    // Add random security alerts
+    const alerts = [
+      'INTRUSION ATTEMPT DETECTED',
+      'FIREWALL UPDATED',
+      'ENCRYPTION KEY ROTATED',
+      'SATELLITE UPLINK VERIFIED',
+      'QUANTUM STATE SECURED'
+    ];
+
+    setInterval(() => {
+      if (Math.random() > 0.8) {
+        const alert = alerts[Math.floor(Math.random() * alerts.length)];
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'status-item';
+        alertDiv.innerHTML = `<span class="status-dot"></span>${alert}`;
+        document.querySelector('.status-indicator').appendChild(alertDiv);
+        setTimeout(() => alertDiv.remove(), 3000);
+      }
+    }, 5000);
+  </script>
+
+  <!-- Add key generation indicator -->
+  <div class="key-generation">
+    <div class="key-bits"></div>
+    <div class="key-progress"></div>
+  </div>
+
+  <script>
+    // Key generation visualization
+    function showKeyGeneration() {
+      const keyGen = document.querySelector('.key-generation');
+      const keyBits = keyGen.querySelector('.key-bits');
+      keyGen.classList.add('active');
+      
+      // Simulate key generation with random hex values
+      const keyInterval = setInterval(() => {
+        const randomKey = Array.from({length: 32}, () => 
+          Math.floor(Math.random() * 16).toString(16)
+        ).join('');
+        keyBits.textContent = randomKey;
+      }, 100);
+
+      // Add to status indicator
+      const statusIndicator = document.querySelector('.status-indicator');
+      const keyStatus = document.createElement('div');
+      keyStatus.className = 'status-item';
+      keyStatus.innerHTML = `
+        <span class="status-dot"></span>
+        KEY GENERATION IN PROGRESS
+      `;
+      statusIndicator.appendChild(keyStatus);
+
+      // Simulate completion
+      setTimeout(() => {
+        clearInterval(keyInterval);
+        keyGen.classList.remove('active');
+        keyStatus.innerHTML = `
+          <span class="status-dot"></span>
+          NEW KEY GENERATED: ${Date.now().toString(36).toUpperCase()}
+        `;
+        // Add completion sound
+        const audio = new Audio('data:audio/wav;base64,...'); // Add your preferred sound
+        audio.volume = 0.2;
+        audio.play().catch(() => {});
+      }, 3000);
+    }
+
+    // Trigger key generation on form submission or encode/decode actions
+    document.querySelectorAll('form').forEach(form => {
+      form.addEventListener('submit', function(e) {
+        showKeyGeneration();
+      });
+    });
+
+    // Also trigger on tab changes
+    document.querySelectorAll('.nav-tabs a').forEach(tab => {
+      tab.addEventListener('click', function() {
+        if (Math.random() > 0.5) { // Randomly show key generation
+          showKeyGeneration();
+        }
+      });
+    });
+  </script>
+
+  <script>
+    // Modify the existing search functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchTab = document.querySelector('#search');
+      if (searchTab) {
+        // Add key generation elements
+        const keyContainer = document.createElement('div');
+        keyContainer.className = 'key-display';
+        keyContainer.innerHTML = `
+          <button class="generate-key-btn">Generate Key</button>
+          <span class="key-value">CLICK TO GENERATE KEY</span>
+        `;
+
+        // Insert before the download button
+        const downloadBtn = searchTab.querySelector('.download-btn');
+        if (downloadBtn) {
+          downloadBtn.parentNode.insertBefore(keyContainer, downloadBtn);
+        }
+
+        // Add key generation functionality
+        const generateBtn = keyContainer.querySelector('.generate-key-btn');
+        const keyDisplay = keyContainer.querySelector('.key-value');
+
+        generateBtn.addEventListener('click', function() {
+          // Show generating status
+          keyDisplay.textContent = 'GENERATING...';
+          generateBtn.disabled = true;
+
+          // Simulate key generation
+          setTimeout(() => {
+            const newKey = Array.from({length: 16}, () => 
+              Math.floor(Math.random() * 16).toString(16)
+            ).join('').toUpperCase();
+            
+            keyDisplay.textContent = newKey;
+            generateBtn.disabled = false;
+
+            // Add to status indicator
+            const statusIndicator = document.querySelector('.status-indicator');
+            if (statusIndicator) {
+              const keyStatus = document.createElement('div');
+              keyStatus.className = 'status-item';
+              keyStatus.innerHTML = `
+                <span class="status-dot"></span>
+                NEW SEARCH KEY: ${newKey}
+              `;
+              statusIndicator.appendChild(keyStatus);
+              setTimeout(() => keyStatus.remove(), 3000);
+            }
+
+            // Play key generation sound
+            const audio = new Audio('data:audio/wav;base64,...'); // Add your preferred sound
+            audio.volume = 0.2;
+            audio.play().catch(() => {});
+          }, 1500);
+        });
+      }
+    });
   </script>
 </body>
 </html>
