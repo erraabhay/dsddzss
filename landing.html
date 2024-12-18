@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>stegoX - Classified Access Portal</title>
+  <link rel="icon" type="image/png" href="s.png">
+  <style>
+    :root {
+      --neon-green: #00ff00;
+      --dark-green: #003300;
+      --alert-red: #ff0000;
+      --scan-blue: #00ffff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: var(--neon-green);
+      font-family: 'Share Tech Mono', monospace;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Grid background */
+    .grid-overlay {
+      position: fixed;
+      inset: 0;
+      background: 
+        linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px),
+        linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+
+    /* Scanning line */
+    .scan-line {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
+        transparent 0%,
+        rgba(0, 255, 0, 0.2) 10%,
+        rgba(0, 255, 0, 0.3) 50%,
+        rgba(0, 255, 0, 0.2) 90%,
+        transparent 100%
+      );
+      animation: scanning 3s linear infinite;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    @keyframes scanning {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    /* Main content */
+    .content {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      font-size: 4em;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 15px;
+      position: relative;
+      text-shadow: 0 0 10px var(--neon-green);
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% { text-shadow: 0 0 10px var(--neon-green); }
+      33% { text-shadow: -2px 0 var(--alert-red), 2px 0 var(--scan-blue); }
+      66% { text-shadow: 2px 0 var(--alert-red), -2px 0 var(--scan-blue); }
+    }
+
+    /* Access button */
+    .access-btn {
+      background: linear-gradient(45deg, 
+        rgba(0,255,0,0.1), 
+        rgba(0,255,0,0.2));
+      box-shadow: 
+        0 0 10px var(--neon-green),
+        inset 0 0 20px rgba(0,255,0,0.2);
+      color: var(--neon-green);
+      padding: 15px 40px;
+      font-size: 1.2em;
+      text-transform: uppercase;
+      letter-spacing: 5px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+      font-family: 'Share Tech Mono', monospace;
+      clip-path: polygon(
+        10px 0, 
+        calc(100% - 10px) 0, 
+        100% 10px, 
+        100% calc(100% - 10px), 
+        calc(100% - 10px) 100%, 
+        10px 100%, 
+        0 calc(100% - 10px), 
+        0 10px
+      );
+    }
+
+    .access-btn:hover {
+      background: var(--neon-green);
+      color: #000;
+      box-shadow: 0 0 20px var(--neon-green);
+    }
+
+    .access-btn::before {
+      content: '[ ';
+    }
+
+    .access-btn::after {
+      content: ' ]';
+    }
+
+    /* Classification markers */
+    .classified {
+      position: fixed;
+      color: var(--alert-red);
+      font-size: 0.8em;
+      padding: 5px 15px;
+      border: 1px solid var(--alert-red);
+      animation: blink 2s infinite;
+    }
+
+    .classified.top-left { top: 20px; left: 20px; }
+    .classified.top-right { top: 20px; right: 20px; }
+    .classified.bottom-left { bottom: 20px; left: 20px; }
+    .classified.bottom-right { bottom: 20px; right: 20px; }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Warning text */
+    .warning {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--alert-red);
+      font-size: 0.8em;
+      text-align: center;
+      opacity: 0.8;
+    }
+
+    /* Add radar scan effect */
+    .radar-scan {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 200vmax;
+      height: 200vmax;
+      transform: translate(-50%, -50%);
+      background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        rgba(0,255,0,0.2) 20deg,
+        transparent 40deg
+      );
+      animation: radarScan 4s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes radarScan {
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Add these new styles */
+    .system-stats {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      font-size: 0.8em;
+      color: var(--neon-green);
+      text-shadow: 0 0 5px var(--neon-green);
+    }
+
+    .stat .value {
+      animation: valueBlink 1s infinite;
+    }
+
+    @keyframes valueBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .quantum-status {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8em;
+      color: var(--scan-blue);
+      text-align: center;
+    }
+
+    .quantum-status .status {
+      color: var(--neon-green);
+      animation: statusPulse 2s infinite;
+    }
+
+    .qubits {
+      font-size: 0.9em;
+      margin-top: 5px;
+      color: var(--neon-green);
+    }
+
+    /* Add these new styles */
+    .tactical-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .corner-marker {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 2px solid var(--neon-green);
+      opacity: 0.8;
+    }
+
+    .corner-marker::before {
+      content: '';
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: var(--neon-green);
+      animation: markerPulse 2s infinite;
+    }
+
+    .top-left {
+      top: 20px;
+      left: 20px;
+      border-right: none;
+      border-bottom: none;
+    }
+
+    .top-right {
+      top: 20px;
+      right: 20px;
+      border-left: none;
+      border-bottom: none;
+    }
+
+    .bottom-left {
+      bottom: 20px;
+      left: 20px;
+      border-right: none;
+      border-top: none;
+    }
+
+    .bottom-right {
+      bottom: 20px;
+      right: 20px;
+      border-left: none;
+      border-top: none;
+    }
+
+    .security-clearance {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--alert-red);
+      font-size: 0.8em;
+      text-align: center;
+      border: 1px solid var(--alert-red);
+      padding: 5px 15px;
+      animation: clearancePulse 4s infinite;
+    }
+
+    .satellite-status {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      font-size: 0.8em;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .sat-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sat-item::before {
+      content: '•';
+      color: var(--neon-green);
+      animation: satBlink 1s infinite;
+    }
+
+    @keyframes markerPulse {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes clearancePulse {
+      0%, 100% { border-color: var(--alert-red); }
+      50% { border-color: transparent; }
+    }
+
+    @keyframes satBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-overlay"></div>
+  <div class="scan-line"></div>
+
+  <div class="classified top-left">TOP SECRET</div>
+  <div class="classified top-right">SCI//NOFORN</div>
+  <div class="classified bottom-left">TS//SI//TK</div>
+  <div class="classified bottom-right">CLASSIFIED</div>
+
+  <div class="content">
+    <div class="logo">stegoX</div>
+    <button class="access-btn" onclick="accessSystem()">Access System</button>
+  </div>
+
+  <div class="warning">
+    WARNING: UNAUTHORIZED ACCESS IS PROHIBITED<br>
+    THIS SYSTEM IS MONITORED BY US CYBER COMMAND
+  </div>
+
+  <div class="system-stats">
+    <div class="stat">CPU: <span class="value">98%</span></div>
+    <div class="stat">MEM: <span class="value">6.2TB</span></div>
+    <div class="stat">NET: <span class="value">1.2TB/s</span></div>
+  </div>
+
+  <div class="quantum-status">
+    QUANTUM ENCRYPTION: <span class="status">ACTIVE</span>
+    <div class="qubits">QUBITS SYNCHRONIZED: 1024</div>
+  </div>
+
+  <script>
+    // Add matrix rain effect
+    const canvas = document.createElement('canvas');
+    canvas.style.position = 'fixed';
+    canvas.style.top = '0';
+    canvas.style.left = '0';
+    canvas.style.zIndex = '0';
+    canvas.style.opacity = '0.3';
+    document.body.insertBefore(canvas, document.body.firstChild);
+
+    const ctx = canvas.getContext('2d');
+    let w, h;
+
+    function setCanvasSize() {
+      canvas.width = w = window.innerWidth;
+      canvas.height = h = window.innerHeight;
+    }
+    setCanvasSize();
+    window.addEventListener('resize', setCanvasSize);
+
+    const cols = Math.floor(w / 20);
+    const ypos = Array(cols).fill(0);
+
+    ctx.fillStyle = '#0f0';
+    ctx.font = '15pt monospace';
+
+    function matrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = '#0f0';
+
+      ypos.forEach((y, ind) => {
+        const text = String.fromCharCode(Math.random() * 128);
+        const x = ind * 20;
+        ctx.fillText(text, x, y);
+        if (y > 100 + Math.random() * 10000) ypos[ind] = 0;
+        else ypos[ind] = y + 20;
+      });
+    }
+
+    setInterval(matrix, 50);
+
+    // System access function
+    function accessSystem() {
+      // Add access animation
+      const btn = document.querySelector('.access-btn');
+      btn.textContent = 'ACCESSING...';
+      btn.style.animation = 'none';
+      
+      // Play access sound
+      const audio = new Audio('data:audio/wav;base64,...'); // Add your preferred sound
+      audio.volume = 0.2;
+      audio.play().catch(() => {});
+
+      // Simulate access verification
+      setTimeout(() => {
+        btn.textContent = 'ACCESS GRANTED';
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 500);
+      }, 1500);
+    }
+  </script>
+</body>
+</html> 
