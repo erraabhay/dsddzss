@@ -65,7 +65,7 @@ $('button.encode, button.decode').click(function(event) {
     var file = document.querySelector('input[name=decodeFile]').files[0];
   
     previewImage(file, ".decode canvas", function() {
-      $(".decode").fadeIn();
+      $(".decode").fadeIn(300);
     });
   }
   
@@ -76,8 +76,8 @@ $('button.encode, button.decode').click(function(event) {
     $(".images .message").hide();
   
     previewImage(file, ".original canvas", function() {
-      $(".images .original").fadeIn();
-      $(".images").fadeIn();
+      $(".images .original").fadeIn(300);
+      $(".images").fadeIn(300);
     });
   }
   
@@ -221,9 +221,9 @@ $('button.encode, button.decode').click(function(event) {
     }
     messageContext.putImageData(message, 0, 0);
   
-    $(".binary").fadeIn();
-    $(".images .nulled").fadeIn();
-    $(".images .message").fadeIn();
+    $(".binary").fadeIn(300);
+    $(".images .nulled").fadeIn(300);
+    $(".images .message").fadeIn(300);
   
     const imageData = $('.message canvas')[0].toDataURL('image/png');
     const storageItem = {
@@ -413,5 +413,38 @@ $('button.encode, button.decode').click(function(event) {
       hash = hash & hash;
     }
     return hash.toString();
+  }
+  
+  // Add smooth transitions for UI elements
+  function showElement(selector) {
+    $(selector)
+      .addClass('fade-in')
+      .show();
+  }
+  
+  // Update existing show/hide calls
+  $(".images .original").hide().addClass('fade-in').fadeIn(300);
+  $(".binary").hide().addClass('fade-in').fadeIn(300);
+  // ... etc ...
+  
+  function handleFileSelect(input, type) {
+    const fileName = input.files[0]?.name;
+    const container = input.closest('.file-input-container');
+    const fileNameElement = container.querySelector('.file-name');
+    
+    if (fileName) {
+      fileNameElement.textContent = fileName;
+      container.querySelector('.file-input-trigger').style.borderStyle = 'solid';
+    } else {
+      fileNameElement.textContent = '';
+      container.querySelector('.file-input-trigger').style.borderStyle = 'dashed';
+    }
+
+    // Call the appropriate preview function
+    if (type === 'encode') {
+      previewEncodeImage();
+    } else if (type === 'decode') {
+      previewDecodeImage();
+    }
   }
   
